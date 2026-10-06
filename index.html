@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>Donde Cada Segundo Me Acerca Más a Ti</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(212,175,55,.10), transparent 35%),
+        radial-gradient(circle at 10% 70%, rgba(120,80,180,.07), transparent 30%),
+        linear-gradient(180deg,#020202 0%,#080808 45%,#030303 100%);
+    color:#e9d69a;
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
+}
+
+/* REFLEJO GENERAL */
+body::after{
+    content:"";
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:42%;
+    pointer-events:none;
+    opacity:.15;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            transparent 0px,
+            rgba(225,198,110,.07) 2px,
+            transparent 5px,
+            rgba(255,255,255,.025) 9px
+        );
+    transform:perspective(500px) rotateX(60deg);
+    transform-origin:bottom;
+    filter:blur(1px);
+}
+
+/* PEQUEÑAS HUELLITAS */
+.paw{
+    position:fixed;
+    color:rgba(218,184,91,.12);
+    font-size:30px;
+    pointer-events:none;
+    z-index:0;
+    animation:floatPaw 7s ease-in-out infinite;
+}
+
+.paw1{top:13%;left:7%;transform:rotate(-20deg);}
+.paw2{top:30%;right:8%;transform:rotate(18deg);animation-delay:1.5s;}
+.paw3{top:57%;left:5%;transform:rotate(15deg);animation-delay:3s;}
+.paw4{top:77%;right:7%;transform:rotate(-15deg);animation-delay:4.5s;}
+
+@keyframes floatPaw{
+    0%,100%{opacity:.08;transform:translateY(0) rotate(-15deg);}
+    50%{opacity:.18;transform:translateY(-10px) rotate(-5deg);}
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    width:min(900px,92%);
+    margin:0 auto;
+    padding:30px 0 70px;
+}
+
+/* CABECERA */
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.moon-cat{
+    width:100px;
+    height:100px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    background:
+        radial-gradient(circle at 35% 30%,rgba(255,235,164,.2),transparent 35%),
+        rgba(10,10,10,.8);
+    border:1px solid rgba(218,184,91,.45);
+    box-shadow:
+        0 0 35px rgba(218,184,91,.10),
+        inset 0 0 25px rgba(218,184,91,.05);
+}
+
+.date{
+    font-size:11px;
+    letter-spacing:4px;
+    color:#a99052;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.header h1{
+    font-family:'Cinzel',serif;
+    font-weight:500;
+    font-size:clamp(22px,5vw,38px);
+    line-height:1.35;
+    color:#e6ca7b;
+    text-shadow:0 0 18px rgba(224,190,91,.16);
+}
+
+/* TARJETA DE FOTO */
+.photo-card{
+    position:relative;
+    margin:25px auto 30px;
+    width:min(620px,100%);
+    padding:12px;
+    border:1px solid rgba(218,184,91,.48);
+    background:rgba(7,7,7,.78);
+    box-shadow:
+        0 0 35px rgba(218,184,91,.08),
+        0 18px 45px rgba(0,0,0,.65);
+}
+
+.photo-card::before,
+.photo-card::after{
+    content:"✦";
+    position:absolute;
+    color:#d9b85c;
+    font-size:14px;
+}
+
+.photo-card::before{
+    top:5px;
+    left:8px;
+}
+
+.photo-card::after{
+    bottom:5px;
+    right:8px;
+}
+
+.photo-wrapper{
+    width:100%;
+    height:330px;
+    background:
+        linear-gradient(135deg,rgba(218,184,91,.08),transparent),
+        #030303;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    cursor:pointer;
+    user-select:none;
+}
+
+.photo-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .45s ease,filter .45s ease;
+}
+
+.photo-wrapper:hover img{
+    transform:scale(1.025);
+    filter:brightness(1.08);
+}
+
+.photo-hint{
+    text-align:center;
+    padding:10px 5px 3px;
+    font-size:9px;
+    letter-spacing:2px;
+    color:rgba(218,184,91,.55);
+    text-transform:uppercase;
+}
+
+/* CARTA */
+.letter{
+    position:relative;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(19,16,10,.88),
+            rgba(5,5,5,.92)
+        );
+    border:1px solid rgba(218,184,91,.30);
+    padding:clamp(28px,6vw,55px);
+    box-shadow:
+        0 0 45px rgba(218,184,91,.07),
+        0 20px 60px rgba(0,0,0,.65);
+    overflow:hidden;
+}
+
+.letter::before{
+    content:"🐾";
+    position:absolute;
+    top:18px;
+    right:20px;
+    font-size:28px;
+    opacity:.10;
+}
+
+.letter::after{
+    content:"";
+    position:absolute;
+    left:10%;
+    right:10%;
+    bottom:0;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(218,184,91,.45),
+        transparent
+    );
+}
+
+.letter p{
+    font-size:clamp(15px,2.8vw,17px);
+    line-height:2;
+    color:#dfcf9c;
+    font-weight:300;
+    margin-bottom:23px;
+    text-align:left;
+}
+
+.letter p:first-child{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:clamp(20px,4vw,29px);
+    line-height:1.5;
+    color:#e8cc7c;
+    letter-spacing:1px;
+    margin-bottom:30px;
+    text-shadow:0 0 18px rgba(218,184,91,.13);
+}
+
+.letter strong{
+    display:block;
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:clamp(18px,4vw,25px);
+    font-weight:500;
+    line-height:1.5;
+    color:#f0d98f;
+    margin-bottom:28px;
+    text-shadow:0 0 16px rgba(218,184,91,.12);
+}
+
+.letter p:last-child{
+    margin-bottom:0;
+    text-align:center;
+    color:#efd78d;
+    font-family:'Cinzel',serif;
+    font-size:clamp(17px,3.5vw,22px);
+    line-height:1.7;
+}
+
+/* FRASE FINAL */
+.final-love{
+    text-align:center;
+    margin:38px auto 28px;
+    padding:25px 15px;
+}
+
+.final-love .pawline{
+    font-size:22px;
+    color:#caa85a;
+    margin-bottom:12px;
+}
+
+.final-love p{
+    font-family:'Cinzel',serif;
+    color:#e4c778;
+    font-size:clamp(16px,3vw,21px);
+    letter-spacing:.5px;
+    line-height:1.7;
+    text-shadow:0 0 20px rgba(218,184,91,.13);
+}
+
+/* BOTÓN POEMA */
+.poem-button-wrap{
+    text-align:center;
+    margin-top:25px;
+}
+
+.poem-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:240px;
+    padding:15px 27px;
+    border:1px solid rgba(225,193,100,.65);
+    color:#edcf7d;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(218,184,91,.13),
+            rgba(218,184,91,.03)
+        );
+    text-decoration:none;
+    font-family:'Cinzel',serif;
+    font-size:13px;
+    letter-spacing:1.5px;
+    transition:all .35s ease;
+    box-shadow:0 0 22px rgba(218,184,91,.06);
+}
+
+.poem-button:hover{
+    background:rgba(218,184,91,.16);
+    box-shadow:0 0 30px rgba(218,184,91,.16);
+    transform:translateY(-2px);
+}
+
+/* PIE */
+.footer{
+    text-align:center;
+    margin-top:35px;
+    color:rgba(218,184,91,.42);
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.footer span{
+    display:block;
+    margin-top:8px;
+    font-size:17px;
+    letter-spacing:0;
+    opacity:.65;
+}
+
+/* PANTALLA COMPLETA */
+.fullscreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:rgba(0,0,0,.97);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    backdrop-filter:blur(10px);
+}
+
+.fullscreen.active{
+    display:flex;
+}
+
+.fullscreen img{
+    max-width:96vw;
+    max-height:88vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border:1px solid rgba(218,184,91,.55);
+    box-shadow:
+        0 0 50px rgba(218,184,91,.13),
+        0 20px 80px rgba(0,0,0,.9);
+}
+
+.back-button{
+    position:absolute;
+    top:20px;
+    left:20px;
+    z-index:10000;
+    padding:12px 17px;
+    border:1px solid rgba(218,184,91,.65);
+    background:rgba(5,5,5,.9);
+    color:#efd58b;
+    font-family:'Montserrat',sans-serif;
+    font-size:12px;
+    letter-spacing:.5px;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(218,184,91,.08);
+}
+
+.back-button:hover{
+    background:rgba(218,184,91,.13);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+
+    .container{
+        width:94%;
+        padding-top:20px;
+    }
+
+    .moon-cat{
+        width:78px;
+        height:78px;
+        font-size:38px;
+    }
+
+    .photo-wrapper{
+        height:260px;
+    }
+
+    .letter{
+        padding:28px 21px;
+    }
+
+    .letter p{
+        line-height:1.85;
+    }
+
+    .fullscreen{
+        padding:12px;
+    }
+
+    .fullscreen img{
+        max-width:100%;
+        max-height:82vh;
+    }
+
+    .back-button{
+        top:12px;
+        left:12px;
+        font-size:11px;
+        padding:11px 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="paw paw1">🐾</div>
+<div class="paw paw2">🐾</div>
+<div class="paw paw3">🐾</div>
+<div class="paw paw4">🐾</div>
+
+<main class="container">
+
+    <header class="header">
+        <div class="moon-cat">🐈‍⬛</div>
+
+        <div class="date">
+            OCTUBRE · 06 · 2026
+        </div>
+
+        <h1>
+            ✦ DONDE CADA SEGUNDO ME ACERCA MÁS A TI ✦
+        </h1>
+    </header>
+
+
+    <!--
+        ==========================================
+        FOTO DE LA CARTA
+        ==========================================
+
+        REEMPLAZA SOLAMENTE:
+        TU-FOTO-AQUI.jpg
+
+        POR EL NOMBRE EXACTO DE TU IMAGEN.
+
+        Ejemplo:
+        src="file_00000000abc123.png"
+
+        Si la imagen está subida directamente al
+        repositorio de GitHub Pages, déjala en la
+        misma carpeta que este index.html.
+    -->
+
+    <section class="photo-card">
+
+        <div class="photo-wrapper"
+             id="photoArea"
+             title="Toca dos veces la imagen para verla en pantalla completa">
+
+            <img
+                id="mainPhoto"
+                src="file_00000000a0b882109a6efcf09b601dc4.png"
+                alt="Un recuerdo especial de nuestro amor"
+            >
+
+        </div>
+
+        <div class="photo-hint">
+            ✦ Toca dos veces la foto para verla en pantalla completa ✦
+        </div>
+
+    </section>
+
+
+    <!-- CARTA EXACTA -->
+
+    <article class="letter">
+
+        <p>✦ DONDE CADA SEGUNDO ME ACERCA MÁS A TI ✦</p>
+
+        <strong>Mi Infinita Tentación de Mi Corazón,</strong>
+
+        <p>
+            Esta es la sexta carta que te escribo, preciosa, y hoy quiero dejarte aquí un pedacito de mi amor para que lo encuentres desde el momento en que abras los ojos.
+        </p>
+
+        <p>
+            Te extraño muchísimo, princesa. Y aunque pasen las horas y parezca que los días caminan más lento, mis ganas de tenerte cerca no disminuyen ni un poquito… aumentan cada vez más. Cada instante que pasa me hace quererte, extrañarte y desear abrazarte todavía más fuerte.
+        </p>
+
+        <p>
+            Y sabes, hermosa, hay algo que me pone profundamente feliz: cada vez faltan menos días para nuestro aniversario. ❤️ Ya casi llega ese día que tanto espero para celebrar todo lo que hemos construido juntos.
+        </p>
+
+        <p>
+            Y aunque nuestro Noah ya no esté físicamente con nosotros, preciosa, seguirá formando parte de nuestra historia, de nuestros recuerdos y de ese amor que siempre llevaremos dentro de nosotros. 🐾
+        </p>
+
+        <p>
+            Espero que hoy hayas podido dormir bien, mi hermosa, y que este día de descanso de tu trabajo sea tranquilo, bonito y lleno de momentos para ti. Descansa, respira y recuerda que, desde muy temprano, hay alguien que te ama con todo su corazón y que no deja de pensarte.
+        </p>
+
+        <p>
+            Te extraño muchísimo, princesa… y cada día te amo todavía más.
+        </p>
+
+    </article>
+
+
+    <!-- DECLARACIÓN FINAL -->
+
+    <section class="final-love">
+
+        <div class="pawline">🐾 · ✦ · 🐾</div>
+
+        <p>
+            Desde que abras los ojos, mi amor ya estará aquí esperándote.
+            <br>
+            Un pequeño pedacito de mi corazón para acompañarte durante todo tu día.
+        </p>
+
+    </section>
+
+
+    <!--
+        ==========================================
+        BOTÓN DEL POEMA
+        ==========================================
+
+        REEMPLAZA:
+        ENLACE-DEL-POEMA-AQUI
+
+        POR EL LINK REAL DEL HTML DEL POEMA.
+
+        Ejemplo:
+
+        href="https://j8753741-eng.github.io/nombre-del-poema/"
+    -->
+
+    <div class="poem-button-wrap">
+
+        <a
+            class="poem-button"
+            href="ENLACE-DEL-POEMA-AQUI"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            ✦ Abrir el poema de hoy ✦
+        </a>
+
+    </div>
+
+
+    <footer class="footer">
+        HECHO CON AMOR, PARA TI
+        <span>🐾 ♡ 🐾</span>
+    </footer>
+
+</main>
+
+
+<!-- PANTALLA COMPLETA DE LA FOTO -->
+
+<div
+    class="fullscreen"
+    id="fullscreenView"
+    aria-hidden="true"
+>
+
+    <button
+        class="back-button"
+        id="backButton"
+        type="button"
+    >
+        ← Volver a la carta
+    </button>
+
+    <img
+        id="fullscreenPhoto"
+        src="file_00000000a0b882109a6efcf09b601dc4.png"
+        alt="Imagen ampliada"
+    >
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   FOTO EN PANTALLA COMPLETA
+   ========================================== */
+
+const photoArea = document.getElementById("photoArea");
+const mainPhoto = document.getElementById("mainPhoto");
+const fullscreenView = document.getElementById("fullscreenView");
+const fullscreenPhoto = document.getElementById("fullscreenPhoto");
+const backButton = document.getElementById("backButton");
+
+
+/* Abrir con doble toque/clic */
+
+photoArea.addEventListener("dblclick", function(){
+    openFullscreen();
+});
+
+
+/* Doble toque real en celulares */
+
+let lastTap = 0;
+
+photoArea.addEventListener("touchend", function(event){
+
+    const now = Date.now();
+    const difference = now - lastTap;
+
+    if(difference > 0 && difference < 350){
+
+        event.preventDefault();
+        openFullscreen();
+
+    }
+
+    lastTap = now;
+
+}, {passive:false});
+
+
+function openFullscreen(){
+
+    fullscreenPhoto.src = mainPhoto.src;
+
+    fullscreenView.classList.add("active");
+
+    fullscreenView.setAttribute("aria-hidden","false");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* Cerrar con el botón */
+
+backButton.addEventListener("click", function(){
+    closeFullscreen();
+});
+
+
+/* Cerrar tocando fuera de la imagen */
+
+fullscreenView.addEventListener("click", function(event){
+
+    if(event.target === fullscreenView){
+        closeFullscreen();
+    }
+
+});
+
+
+/* Cerrar con ESC en computador */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape" &&
+       fullscreenView.classList.contains("active")){
+
+        closeFullscreen();
+
+    }
+
+});
+
+
+function closeFullscreen(){
+
+    fullscreenView.classList.remove("active");
+
+    fullscreenView.setAttribute("aria-hidden","true");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* ==========================================
+   EVITAR QUE UN DOBLE TOQUE HAGA ZOOM
+   ========================================== */
+
+photoArea.addEventListener("touchstart", function(event){
+
+    if(event.touches.length > 1){
+        event.preventDefault();
+    }
+
+}, {passive:false});
+
+</script>
+
+</body>
+  </html>
